@@ -18,7 +18,7 @@ const db = knex({
 });
 
 const app = express();
-
+app.use(allowCrossDomain)
 app.get('/', (req, res)=> { res.send("it is working") })
 app.post('/signIn', signIn.handleSignIn(db, bcrypt))
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
