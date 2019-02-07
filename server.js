@@ -1,3 +1,4 @@
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
@@ -18,7 +19,10 @@ const db = knex({
 });
 
 const app = express();
-app.use(allowCrossDomain)
+
+app.use(cors())
+app.use(bodyParser.json());
+
 app.get('/', (req, res)=> { res.send("it is working") })
 app.post('/signIn', signIn.handleSignIn(db, bcrypt))
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
